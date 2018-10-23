@@ -31,8 +31,12 @@ public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into user (username, password)",
-        "values (#{username,jdbcType=CHAR}, #{password,jdbcType=CHAR})"
+        "insert into user (username, password, ",
+        "icon, token, phone, ",
+        "email)",
+        "values (#{username,jdbcType=CHAR}, #{password,jdbcType=CHAR}, ",
+        "#{icon,jdbcType=CHAR}, #{token,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, ",
+        "#{email,jdbcType=VARCHAR})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(User record);
@@ -45,20 +49,28 @@ public interface UserMapper {
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="username", property="username", jdbcType=JdbcType.CHAR),
-        @Result(column="password", property="password", jdbcType=JdbcType.CHAR)
+        @Result(column="password", property="password", jdbcType=JdbcType.CHAR),
+        @Result(column="icon", property="icon", jdbcType=JdbcType.CHAR),
+        @Result(column="token", property="token", jdbcType=JdbcType.VARCHAR),
+        @Result(column="phone", property="phone", jdbcType=JdbcType.CHAR),
+        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR)
     })
     List<User> selectByExample(UserExample example);
 
     @Select({
         "select",
-        "id, username, password",
+        "id, username, password, icon, token, phone, email",
         "from user",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="username", property="username", jdbcType=JdbcType.CHAR),
-        @Result(column="password", property="password", jdbcType=JdbcType.CHAR)
+        @Result(column="password", property="password", jdbcType=JdbcType.CHAR),
+        @Result(column="icon", property="icon", jdbcType=JdbcType.CHAR),
+        @Result(column="token", property="token", jdbcType=JdbcType.VARCHAR),
+        @Result(column="phone", property="phone", jdbcType=JdbcType.CHAR),
+        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR)
     })
     User selectByPrimaryKey(Integer id);
 
@@ -74,7 +86,11 @@ public interface UserMapper {
     @Update({
         "update user",
         "set username = #{username,jdbcType=CHAR},",
-          "password = #{password,jdbcType=CHAR}",
+          "password = #{password,jdbcType=CHAR},",
+          "icon = #{icon,jdbcType=CHAR},",
+          "token = #{token,jdbcType=VARCHAR},",
+          "phone = #{phone,jdbcType=CHAR},",
+          "email = #{email,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(User record);

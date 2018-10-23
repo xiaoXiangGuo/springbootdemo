@@ -36,6 +36,22 @@ public class UserSqlProvider {
             sql.VALUES("password", "#{password,jdbcType=CHAR}");
         }
         
+        if (record.getIcon() != null) {
+            sql.VALUES("icon", "#{icon,jdbcType=CHAR}");
+        }
+        
+        if (record.getToken() != null) {
+            sql.VALUES("token", "#{token,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getPhone() != null) {
+            sql.VALUES("phone", "#{phone,jdbcType=CHAR}");
+        }
+        
+        if (record.getEmail() != null) {
+            sql.VALUES("email", "#{email,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -48,6 +64,10 @@ public class UserSqlProvider {
         }
         sql.SELECT("username");
         sql.SELECT("password");
+        sql.SELECT("icon");
+        sql.SELECT("token");
+        sql.SELECT("phone");
+        sql.SELECT("email");
         sql.FROM("user");
         applyWhere(sql, example, false);
         
@@ -77,6 +97,22 @@ public class UserSqlProvider {
             sql.SET("password = #{record.password,jdbcType=CHAR}");
         }
         
+        if (record.getIcon() != null) {
+            sql.SET("icon = #{record.icon,jdbcType=CHAR}");
+        }
+        
+        if (record.getToken() != null) {
+            sql.SET("token = #{record.token,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getPhone() != null) {
+            sql.SET("phone = #{record.phone,jdbcType=CHAR}");
+        }
+        
+        if (record.getEmail() != null) {
+            sql.SET("email = #{record.email,jdbcType=VARCHAR}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -88,6 +124,10 @@ public class UserSqlProvider {
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
         sql.SET("username = #{record.username,jdbcType=CHAR}");
         sql.SET("password = #{record.password,jdbcType=CHAR}");
+        sql.SET("icon = #{record.icon,jdbcType=CHAR}");
+        sql.SET("token = #{record.token,jdbcType=VARCHAR}");
+        sql.SET("phone = #{record.phone,jdbcType=CHAR}");
+        sql.SET("email = #{record.email,jdbcType=VARCHAR}");
         
         UserExample example = (UserExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -104,6 +144,22 @@ public class UserSqlProvider {
         
         if (record.getPassword() != null) {
             sql.SET("password = #{password,jdbcType=CHAR}");
+        }
+        
+        if (record.getIcon() != null) {
+            sql.SET("icon = #{icon,jdbcType=CHAR}");
+        }
+        
+        if (record.getToken() != null) {
+            sql.SET("token = #{token,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getPhone() != null) {
+            sql.SET("phone = #{phone,jdbcType=CHAR}");
+        }
+        
+        if (record.getEmail() != null) {
+            sql.SET("email = #{email,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

@@ -1,7 +1,7 @@
 package com.example.springbootdemo.resultBean.common;
 
 public class ResultBean<B> {
-    private int code;
+    private int code = 500;
     private B data;
     private String message;
 
@@ -17,7 +17,7 @@ public class ResultBean<B> {
         return ResultBean.success(data, "操作成功");
     }
 
-    public static <BEAN > ResultBean<BEAN> success(BEAN data, String message) {
+    public static <BEAN> ResultBean<BEAN> success(BEAN data, String message) {
         ResultBean<BEAN> resultBean = new ResultBean<>();
         resultBean.code = ResultCode.SUCCESS;
         resultBean.data = data;
@@ -25,19 +25,19 @@ public class ResultBean<B> {
         return resultBean;
     }
 
-    public static <BEAN > ResultBean<BEAN> fail() {
+    public static <BEAN> ResultBean<BEAN> fail() {
         return ResultBean.fail(null, "操作失败");
     }
 
-    public static <BEAN > ResultBean<BEAN> fail(BEAN data) {
+    public static <BEAN> ResultBean<BEAN> fail(BEAN data) {
         return ResultBean.fail(data, "操作失败");
     }
 
-    public static  ResultBean fail(String message) {
-        return ResultBean.fail( null, message);
+    public static ResultBean fail(String message) {
+        return ResultBean.fail(null, message);
     }
 
-    public static <BEAN > ResultBean<BEAN> fail(BEAN data, String message) {
+    public static <BEAN> ResultBean<BEAN> fail(BEAN data, String message) {
         ResultBean resultBean = new ResultBean<>();
         resultBean.code = ResultCode.FAIL;
         resultBean.data = data;
@@ -49,7 +49,7 @@ public class ResultBean<B> {
         return ResultBean.exception(null, "操作异常");
     }
 
-    public static <BEAN > ResultBean<BEAN> exception(BEAN data) {
+    public static <BEAN> ResultBean<BEAN> exception(BEAN data) {
         return ResultBean.exception(data, "操作异常");
     }
 
@@ -59,5 +59,29 @@ public class ResultBean<B> {
         resultBean.data = data;
         resultBean.message = message;
         return resultBean;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public B getData() {
+        return data;
+    }
+
+    public void setData(B data) {
+        this.data = data;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
